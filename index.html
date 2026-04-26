@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Auto-Deploy Website</title>
+    <style>
+        /* YEH CSS AAPNE CONSOLE MEIN LIKHA THA - YAHAN AAYEGA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .version-card {
+            background: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .version-number {
+            font-size: 2em;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .timestamp {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .badge {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 CI/CD Pipeline Demo</h1>
+        
+        <div class="version-card">
+            <div class="version-number">
+                Version <span id="version">1.0.0</span>
+            </div>
+            <div class="timestamp">
+                Deployed: <span id="deployedTime"></span>
+            </div>
+        </div>
+        
+        <p>✅ Jenkins + Docker + Kubernetes</p>
+        <p>⚡ Auto-deploy on git push</p>
+        <p>🔄 Zero downtime updates</p>
+        
+        <div class="badge">
+            🐳 Docker Container
+        </div>
+        
+        <br>
+        <button onclick="refreshTime()">Refresh Time</button>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('deployedTime').innerHTML = now.toLocaleString('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                dateStyle: 'full',
+                timeStyle: 'long'
+            });
+        }
+        
+        function refreshTime() {
+            updateTime();
+            alert('Time updated!');
+        }
+        
+        updateTime();
+        setInterval(updateTime, 5000);
+    </script>
+</body>
+</html>
