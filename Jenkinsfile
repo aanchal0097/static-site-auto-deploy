@@ -4,20 +4,20 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t static-site .'
+                sh 'docker build -t static-site .'
             }
         }
 
         stage('Stop Old Container') {
             steps {
-                bat 'docker stop static-container || exit 0'
-                bat 'docker rm static-container || exit 0'
+                sh 'docker stop static-container || true'
+                sh 'docker rm static-container || true'
             }
         }
 
         stage('Run Container') {
             steps {
-                bat 'docker run -d -p 8000:80 --name static-container static-site'
+                sh 'docker run -d -p 8000:80 --name static-container static-site'
             }
         }
     }
