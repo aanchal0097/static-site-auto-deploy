@@ -16,6 +16,14 @@ jobs:
       - name: Build Docker Image 
         run: docker build -t static-site .
 
-      - name: Run containers
-        run: docker run -d -p 8081:80 static-site
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCEKR_PASSWORD }}
+
+      - name: Tag Image
+        run: docker tag static-site ${{ secrets.DOCKER_USERNAME }}/static-site:latest
+      
+      - name: Push Image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/static-site:latest 
+
+
         
